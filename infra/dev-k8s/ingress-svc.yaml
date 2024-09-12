@@ -1,0 +1,23 @@
+﻿apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-svc
+  labels:
+    name: ingress-svc
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - api.asyncauction.com
+      secretName: asyncauction-app-tls
+  rules:
+    - host: api.asyncauction.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: gateway-clusterip
+                port:
+                  number: 80

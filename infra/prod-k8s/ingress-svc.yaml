@@ -1,0 +1,25 @@
+﻿apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-svc
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+  labels:
+    name: ingress-svc
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - api.reactiv3.net
+      secretName: auctionnext-app-tls
+  rules:
+    - host: api.reactiv3.net
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: gateway-clusterip
+                port:
+                  number: 80
