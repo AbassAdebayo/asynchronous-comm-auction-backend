@@ -12,7 +12,7 @@
 9. [License](#license)
 
 ## Introduction
-**async-auction-platform** is a web application designed to provide an enhanced real-time communication system for online auctions. This platform allows users to enter a bidding room, submit bids, and receive notifications for the highest bids at the end of the auction. Additionally, it automatically generates invoices for the highest bidder. The project uses a microservices architecture with an asynchronous communication system for scalability and maintainability.
+**asynchronous-comm-auction-chat** is a web application designed to provide an enhanced real-time communication system for online auctions. This platform allows users to enter a bidding room, submit bids, and receive notifications for the highest bids at the end of the auction. Additionally, it automatically generates invoices for the highest bidder. The project uses a microservices architecture with an asynchronous communication system for scalability and maintainability.
 
 ## Technologies
 The following technologies and libraries are used in this project:
@@ -29,7 +29,7 @@ The following technologies and libraries are used in this project:
 - **gRPC**: For high-performance communication between microservices.
 - **Serilog**: For logging.
 - **Paystack**: For payment processing.
-- **PostgreSQL**: The primary relational database.
+- **SqlServer**: The primary relational database.
 - **MongoDB**: For storing unstructured data.
 - **OpenTelemetry and Grafana**: For observability and monitoring.
 - **Docker and Kubernetes**: For containerization and orchestration.
@@ -44,15 +44,15 @@ The following technologies and libraries are used in this project:
 
 ## Getting Started
 
-To get started with the **async-auction-platform** project, follow these steps:
+To get started with the **asynchronous-comm-auction-chat** project, follow these steps:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/YusuffAhmad/async-auction-platform.git
+   git clone https://github.com/AbassAdebayo/asynchronous-comm-auction-backend.git
 2. **Navigate to the project directory**:
 
    ```bash
-   cd async-auction-platform
+   cd asynchronous-comm-auction-backend
 3. **Restore the dependencies**: 
     ```bash
     dotnet restore
