@@ -1,89 +1,111 @@
-# Async Auction Platform
+# Asynchronous Communication Auction Chat
 
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Technologies](#technologies)
 3. [Design Decisions](#design-decisions)
-4. [Getting Started](#getting-started)
+4. [Setup Instructions](#setup-instructions)
 5. [Running the Application](#running-the-application)
-6. [Usage](#usage)
-7. [Troubleshooting and FAQ](#troubleshooting-and-faq)
+6. [How to Use](#how-to-use)
+7. [FAQ and Troubleshooting](#faq-and-troubleshooting)
 8. [Contributing](#contributing)
 9. [License](#license)
 
 ## Introduction
-**asynchronous-comm-auction-chat** is a web application designed to provide an enhanced real-time communication system for online auctions. This platform allows users to enter a bidding room, submit bids, and receive notifications for the highest bids at the end of the auction. Additionally, it automatically generates invoices for the highest bidder. The project uses a microservices architecture with an asynchronous communication system for scalability and maintainability.
+**Asynchronous Communication Auction Chat** is a web-based platform developed to facilitate real-time communication during online auctions. Users can enter bidding rooms, place bids, and receive notifications on the highest bids in real-time. Once an auction ends, the system generates an invoice for the winning bidder automatically. The project utilizes microservices architecture with asynchronous messaging to ensure scalability and efficient communication.
 
 ## Technologies
-The following technologies and libraries are used in this project:
+The project leverages the following technologies and libraries:
 
-- **ASP.NET Core (.NET 7)**: A cross-platform framework for building web applications.
-- **Duende IdentityServer**: For handling Single Sign-On (SSO) and OAuth2/OIDC authentication.
-- **MassTransit**: A distributed application framework for building message-based systems.
-- **SignalR**: For real-time communication.
-- **YARP (Yet Another Reverse Proxy)**: For API Gateway functionality.
-- **RabbitMQ**: A message broker for asynchronous messaging.
-- **Clean Architecture**: For organizing code and enforcing separation of concerns.
-- **CQRS (Command Query Responsibility Segregation)**: A pattern to separate read and write operations.
-- **Repository Pattern**: For data access abstraction.
-- **gRPC**: For high-performance communication between microservices.
-- **Serilog**: For logging.
-- **Paystack**: For payment processing.
-- **SqlServer**: The primary relational database.
-- **MongoDB**: For storing unstructured data.
-- **OpenTelemetry and Grafana**: For observability and monitoring.
-- **Docker and Kubernetes**: For containerization and orchestration.
+- **ASP.NET Core (.NET 7)**: For building cross-platform web applications.
+- **Duende IdentityServer**: For Single Sign-On (SSO) and authentication using OAuth2/OIDC protocols.
+- **MassTransit**: Enables message-based communication in distributed systems.
+- **SignalR**: Facilitates real-time communication.
+- **YARP (Yet Another Reverse Proxy)**: Acts as an API Gateway.
+- **RabbitMQ**: Used for asynchronous message queuing.
+- **Clean Architecture**: Maintains separation of concerns and organizes code effectively.
+- **CQRS (Command Query Responsibility Segregation)**: Separates read and write operations for better scalability.
+- **Repository Pattern**: Abstraction layer for data access.
+- **gRPC**: Ensures high-performance communication between services.
+- **Serilog**: Manages logging.
+- **Paystack**: Integrates payment processing.
+- **SQL Server**: The primary relational database.
+- **MongoDB**: Stores unstructured data.
+- **OpenTelemetry and Grafana**: Provides observability and monitoring.
+- **Docker and Kubernetes**: Enables containerization and orchestration.
 
 ## Design Decisions
-- **Microservices Architecture**: To allow independent deployment, scaling, and development of different services.
-- **Duende IdentityServer**: Chosen for secure and flexible authentication and authorization.
-- **MassTransit and RabbitMQ**: Used for asynchronous communication and message handling between services.
-- **YARP Gateway**: Provides a reverse proxy gateway for routing requests to appropriate services.
-- **Clean Architecture**: Ensures high maintainability and testability.
-- **CQRS and Repository Pattern**: For separation of command and query responsibilities and abstracted data access.
+- **Microservices**: Independent services allow separate deployment, scaling, and development of features.
+- **Duende IdentityServer**: Provides secure and flexible user authentication and authorization.
+- **MassTransit with RabbitMQ**: Used for asynchronous communication between services to improve scalability.
+- **YARP Gateway**: Functions as a reverse proxy, routing requests to respective services.
+- **Clean Architecture**: Ensures high testability, maintainability, and separation of concerns.
+- **CQRS and Repository Pattern**: Offers efficient separation of queries and commands, with abstracted data access.
 
-## Getting Started
+## Setup Instructions
 
-To get started with the **asynchronous-comm-auction-chat** project, follow these steps:
+To start working with the **Asynchronous Communication Auction Chat** project, follow these steps:
 
 1. **Clone the repository**:
-   ```bash
+
    git clone https://github.com/AbassAdebayo/asynchronous-comm-auction-backend.git
-2. **Navigate to the project directory**:
 
-   ```bash
+
+2. **Move to the project folder**:
+
    cd asynchronous-comm-auction-backend
-3. **Restore the dependencies**: 
-    ```bash
-    dotnet restore
-4. Update the database connection string in the respective `appsettings.Development.json` files to match your PostgreSQL
-   database configuration.
-5. Apply the database migrations for each project: `dotnet ef database update` (
-   e.g., `dotnet ef database update --project src/AuctionService`)
-6. Run each project individually using the `dotnet run` command (e.g., `dotnet run --project src/AuctionService`)
+  
 
-## Usage
+3. **Restore the required dependencies**:
+  
+   dotnet restore
+   
 
-Once the application is running, you can access the API documentation using Swagger UI. Open your web browser and
-navigate to the respective URLs for each project:
+4. **Update database connection strings**: 
+   Modify the `appsettings.Development.json` files in each service to reflect your SQL Server database configuration.
 
-- RoomsService: `https://localhost:5001/swagger/index.html`
-- BiddingService: `https://localhost:7002/swagger/index.html`
-- GatewayService: `https://localhost:6001/swagger/index.html`
-- IdentityService: `https://localhost:5000`
+5. **Apply database migrations**: 
+   Run migrations for each service using `dotnet ef database update`. Example:
+   
+   **dotnet ef database update --project src/AuctionService**
+   
 
-Here, you can explore the available endpoints and test them.
+6. **Run the projects**:
+   Start each service individually:
+   
+   dotnet run --project src/AuctionService
+
+
+## How to Use
+
+After the application is running, you can explore its API using Swagger UI. Open a browser and access the documentation for each service at the following URLs:
+
+- **Rooms Service**: `https://localhost:5001/swagger/index.html`
+- **Bidding Service**: `https://localhost:7002/swagger/index.html`
+- **Gateway Service**: `https://localhost:6001/swagger/index.html`
+- **Identity Service**: `https://localhost:5000`
+
+This allows you to interact with and test the available API endpoints.
 
 ## Contributing
 
-Contributions to the AuctionNext project are welcome. To contribute, follow these steps:
+We welcome contributions to improve the project. To contribute:
 
-1. Fork the repository
-2. Create a new branch: `git checkout -b feature/your-feature-name`
-3. Make your changes and commit them: `git commit -am 'Add some feature'`
-4. Push the changes to your fork: `git push origin feature/your-feature-name`
-5. Create a new pull request
+1. Fork the repository.
+2. Create a new branch: 
+   
+   git checkout -b feature/your-feature-name
+   
+3. Implement your changes and commit:
+  
+   git commit -am 'Added a new feature'
+   
+4. Push your branch:
+
+   git push origin feature/your-feature-name
+
+5. Submit a pull request for review.
 
 ## License
 
-The AuctionNext project is licensed under the [MIT License](LICENSE).
+This project is distributed under the [MIT License](LICENSE).
