@@ -16,16 +16,16 @@ namespace RoomService.Infrastructure.IOC.Extensions
             services.AddSwaggerGen(c =>
             {
                 var path = Path.Combine(Directory.GetCurrentDirectory(), "readme.md");
-                var desc = $"Room Service API";
+                var description = $"Room Service API";
 
                 if (File.Exists(path))
-                    desc = File.ReadAllText(path);
+                    description = File.ReadAllText(path);
 
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "Room Service API",
                     Version = "v1",
-                    Description = desc
+                    Description = description
                 });
 
                 // Add JWT Authentication to Swagger
@@ -99,7 +99,7 @@ namespace RoomService.Infrastructure.IOC.Extensions
         {
             services.AddDbContext<AuctionDbContext>(opt =>
             {
-                opt.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+                opt.UseSqlServer(configuration.GetConnectionString("AuctionConnection"));
             });
 
             return services;

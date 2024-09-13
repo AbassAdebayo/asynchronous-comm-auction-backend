@@ -1,4 +1,6 @@
-﻿namespace RoomService.Domain.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace RoomService.Domain.Models
 {
 
     /// <summary>
@@ -10,6 +12,8 @@
         public int ReservePrice { get; set; } = 0;
         public string Seller { get; set; }
         public string Winner { get; set; }
+
+        [Column(TypeName = "decimal(18, 2)")]
         public decimal? SoldAmount { get; set; }
         public int? CurrentHighBid { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
