@@ -2,7 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using RoomService.Application.Contracts;
-using RoomService.Application.Models;
+using RoomService.Application.DTOs;
 using RoomService.Domain.Models;
 using RoomService.Infrastructure.Context;
 
@@ -45,7 +45,7 @@ public class AuctionRepository : IAuctionRepository
     public async Task<AuctionDto> GetAuctionByIdAsync(Guid id)
     {
         var auction =  await _context.Auctions
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .FindAsync(id);
 
         var auctionDtos = _mapper.Map<AuctionDto>(auction);
         return auctionDtos;
@@ -58,8 +58,7 @@ public class AuctionRepository : IAuctionRepository
     /// <returns>An <see cref="Auction"/> entity, or null if not found.</returns>
     public async Task<Auction> GetAuctionEntityById(Guid id)
     {
-        return await _context.Auctions
-            .FirstOrDefaultAsync(x => x.Id == id);
+        return await _context.Auctions.FindAsync(id);
     }
 
     /// <summary>
@@ -73,7 +72,7 @@ public class AuctionRepository : IAuctionRepository
 
         if (!string.IsNullOrEmpty(date))
         {
-            query = query.Where(x => x.UpdatedAt.CompareTo(DateTime.Parse(date).ToUniversalTime()) > 0);
+            query = query.Where(a => a.UpdatedAt.CompareTo(DateTime.Parse(date).ToUniversalTime()) > 0);
         }
 
         var auctions = await query.ToListAsync();

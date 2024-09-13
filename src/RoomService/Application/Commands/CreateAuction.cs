@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using RoomService.Application.Contracts;
-using RoomService.Application.Models;
+using RoomService.Application.DTOs;
 using RoomService.Domain.Models;
 
 namespace RoomService.Application.Commands;

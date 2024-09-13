@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace RoomService.Application.Models;
+namespace RoomService.Application.DTOs;
 
 /// <summary>
 /// Represents a Data Transfer Object for creating a new auction.

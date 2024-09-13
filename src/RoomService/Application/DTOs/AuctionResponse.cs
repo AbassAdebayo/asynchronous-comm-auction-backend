@@ -1,4 +1,4 @@
-﻿namespace RoomService.Application.Models;
+﻿namespace RoomService.Application.DTOs;
 
 public record AuctionResponse(
     Guid Id,

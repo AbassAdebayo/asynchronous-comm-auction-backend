@@ -1,4 +1,4 @@
-﻿namespace RoomService.Application.Models;
+﻿namespace RoomService.Application.DTOs;
 
 /// <summary>
 /// Represents a Data Transfer Object for updating an auction.

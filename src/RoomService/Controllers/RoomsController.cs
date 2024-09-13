@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RoomService.Application.Commands;
-using RoomService.Application.Models;
+using RoomService.Application.DTOs;
 using RoomService.Application.Queries;
 
 namespace RoomService.Controllers

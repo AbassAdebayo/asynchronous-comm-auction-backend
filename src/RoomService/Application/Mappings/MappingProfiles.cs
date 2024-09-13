@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using RoomService.Application.Models;
+using RoomService.Application.DTOs;
 using RoomService.Domain.Models;
 using SharedKernel;
 using static RoomService.Application.Commands.UpdateAuction;
