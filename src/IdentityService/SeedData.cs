@@ -20,66 +20,66 @@ public class SeedData
 
         if (userMgr.Users.Any()) return;
 
-        var alice = userMgr.FindByNameAsync("alice").Result;
-        if (alice == null)
+        var janet = userMgr.FindByNameAsync("janet").Result;
+        if (janet == null)
         {
-            alice = new ApplicationUser
+            janet = new ApplicationUser
             {
-                UserName = "alice",
-                Email = "AliceSmith@email.com",
+                UserName = "janet",
+                Email = "Janetfat@gmail.com",
                 EmailConfirmed = true,
             };
-            var result = userMgr.CreateAsync(alice, "Pass123$").Result;
+            var result = userMgr.CreateAsync(janet, "Pass123$_").Result;
             if (!result.Succeeded)
             {
                 throw new Exception(result.Errors.First().Description);
             }
 
-            result = userMgr.AddClaimsAsync(alice, new Claim[]
+            result = userMgr.AddClaimsAsync(janet, new Claim[]
             {
-                new(JwtClaimTypes.Name, "Alice Smith"),
+                new(JwtClaimTypes.Name, "Janet Fat"),
             }).Result;
             if (!result.Succeeded)
             {
                 throw new Exception(result.Errors.First().Description);
             }
 
-            Log.Debug("alice created");
+            Log.Debug("Janet created");
         }
         else
         {
-            Log.Debug("alice already exists");
+            Log.Debug("Janet already exists");
         }
 
-        var bob = userMgr.FindByNameAsync("bob").Result;
-        if (bob == null)
+        var fred = userMgr.FindByNameAsync("fred").Result;
+        if (fred == null)
         {
-            bob = new ApplicationUser
+            fred = new ApplicationUser
             {
-                UserName = "bob",
-                Email = "BobSmith@email.com",
+                UserName = "fred",
+                Email = "Fred@gmail.com",
                 EmailConfirmed = true
             };
-            var result = userMgr.CreateAsync(bob, "Pass123$").Result;
+            var result = userMgr.CreateAsync(fred, "Pass123$_").Result;
             if (!result.Succeeded)
             {
                 throw new Exception(result.Errors.First().Description);
             }
 
-            result = userMgr.AddClaimsAsync(bob, new Claim[]
+            result = userMgr.AddClaimsAsync(fred, new Claim[]
             {
-                new(JwtClaimTypes.Name, "Bob Smith"),
+                new(JwtClaimTypes.Name, "Fred Joe"),
             }).Result;
             if (!result.Succeeded)
             {
                 throw new Exception(result.Errors.First().Description);
             }
 
-            Log.Debug("bob created");
+            Log.Debug("fred created");
         }
         else
         {
-            Log.Debug("bob already exists");
+            Log.Debug("fred already exists");
         }
 
         var tom = userMgr.FindByNameAsync("tom").Result;
@@ -91,7 +91,7 @@ public class SeedData
                 Email = "TomSmith@email.com",
                 EmailConfirmed = true,
             };
-            var result = userMgr.CreateAsync(tom, "Pass123$").Result;
+            var result = userMgr.CreateAsync(tom, "Pass123$_").Result;
             if (!result.Succeeded)
             {
                 throw new Exception(result.Errors.First().Description);
@@ -122,7 +122,7 @@ public class SeedData
                 Email = "andrewgunn31@gmail.com",
                 EmailConfirmed = true
             };
-            var result = userMgr.CreateAsync(andrew, "Pass123$").Result;
+            var result = userMgr.CreateAsync(andrew, "Pass123$_").Result;
             if (!result.Succeeded)
             {
                 throw new Exception(result.Errors.First().Description);
