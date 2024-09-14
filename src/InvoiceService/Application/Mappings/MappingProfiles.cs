@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using SharedKernel;
-using InvoiceService.Domain.AggregateModels;
+using InvoiceService.Domain.Models;
 
 namespace InvoiceService.Application.Mappings
 {

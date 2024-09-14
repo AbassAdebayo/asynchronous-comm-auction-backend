@@ -1,5 +1,5 @@
-using Npgsql;
-using PaymentService;
+using Microsoft.Data.SqlClient;
+using PaymentService.Infrastructure.IOC.Extensions;
 using Polly;
 using Serilog;
 using Stripe;
@@ -8,9 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
 // Add services to the container.
 builder.Services
-       .AddCustomDbContext(builder.Configuration)
+       .AddDatabase(builder.Configuration)
        .AddHttpClient()
-       .AddCustomServices()
+       .AddRepositories()
        .AddCustomIntegrationTransport(builder.Configuration);
 
 builder.Host.UseSerilog((context, configuration) =>
@@ -20,6 +20,6 @@ var app = builder.Build();
 
 app.UseSerilogRequestLogging();
 
-var retryPolicy = Policy.Handle<NpgsqlException>().WaitAndRetry(5, retryAttempt => TimeSpan.FromSeconds(10));
+var retryPolicy = Policy.Handle<SqlException>().WaitAndRetry(5, retryAttempt => TimeSpan.FromSeconds(10));
 
 app.Run();

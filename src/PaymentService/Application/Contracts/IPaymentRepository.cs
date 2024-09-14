@@ -1,4 +1,4 @@
-﻿using PaymentService.Domain.AggregateModels;
+﻿using PaymentService.Domain.Models;
 
 namespace PaymentService.Application.Contracts;
 

@@ -12,7 +12,7 @@ using RoomService.Infrastructure.Context;
 namespace RoomService.Migrations
 {
     [DbContext(typeof(AuctionDbContext))]
-    [Migration("20240913195823_first")]
+    [Migration("20240913203000_first")]
     partial class first
     {
         /// <inheritdoc />

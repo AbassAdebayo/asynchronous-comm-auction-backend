@@ -1,7 +1,7 @@
 ﻿using MassTransit;
 using PaymentService.Application.Contracts;
-using PaymentService.Domain.AggregateModels;
-using PaymentService.Infrastructure;
+using PaymentService.Domain.Models;
+using PaymentService.Infrastructure.Context;
 using SharedKernel;
 
 namespace PaymentService.Application.Consumers

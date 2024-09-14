@@ -1,4 +1,4 @@
-using Npgsql;
+using Microsoft.Data.SqlClient;
 using Polly;
 using RoomService.Grpc.Services;
 using RoomService.Infrastructure.Context;
@@ -42,7 +42,7 @@ app.MapControllers();
 app.MapGrpcService<GrpcAuctionService>();
 
 // Use this to retry if container is not ready
-var retryPolicy = Policy.Handle<NpgsqlException>().WaitAndRetry(5, retryAttempt => TimeSpan.FromSeconds(10));
+var retryPolicy = Policy.Handle<SqlException>().WaitAndRetry(5, retryAttempt => TimeSpan.FromSeconds(10));
 retryPolicy.ExecuteAndCapture(() => DbInitializer.InitDb(app));
 
 

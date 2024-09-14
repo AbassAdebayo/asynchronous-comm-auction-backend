@@ -1,8 +1,8 @@
-﻿using InvoiceService.Domain.AggregateModels;
+﻿using InvoiceService.Domain.Models;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 
-namespace InvoiceService.Infrastructure;
+namespace InvoiceService.Infrastructure.Context;
 
 /// <summary>
 /// Represents the database context for the Auction service, providing access to the auctions stored in the database.

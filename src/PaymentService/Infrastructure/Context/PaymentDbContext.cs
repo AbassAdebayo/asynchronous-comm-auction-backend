@@ -1,8 +1,8 @@
 ﻿using MassTransit;
 using Microsoft.EntityFrameworkCore;
-using PaymentService.Domain.AggregateModels;
+using PaymentService.Domain.Models;
 
-namespace PaymentService.Infrastructure;
+namespace PaymentService.Infrastructure.Context;
 
 /// <summary>
 /// Application database context that extends <see cref="DbContext"/>.

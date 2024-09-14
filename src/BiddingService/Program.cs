@@ -1,6 +1,6 @@
-using BiddingService;
 using BiddingService.Grpc.Services;
-using BiddingService.Infrastructure;
+using BiddingService.Infrastructure.Context;
+using BiddingService.Infrastructure.IOC.Extensions;
 using MongoDB.Driver;
 using MongoDB.Entities;
 using Polly;

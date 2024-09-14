@@ -1,5 +1,5 @@
 using InvoiceService.Application.Consumers;
-using InvoiceService.Infrastructure;
+using InvoiceService.Infrastructure.Context;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 

@@ -84,8 +84,8 @@ namespace RoomService.Infrastructure.IOC.Extensions
                     });
                     cfg.Host(configuration["RabbitMq:Host"], "/", host =>
                     {
-                        host.Username(configuration.GetValue("RabbitMq:Username", "guest"));
-                        host.Password(configuration.GetValue("RabbitMq:Password", "guest"));
+                        host.Username(configuration.GetValue("RabbitMq:Username", "admin"));
+                        host.Password(configuration.GetValue("RabbitMq:Password", "admin"));
                     });
 
                     cfg.ConfigureEndpoints(context);
@@ -99,7 +99,7 @@ namespace RoomService.Infrastructure.IOC.Extensions
         {
             services.AddDbContext<AuctionDbContext>(opt =>
             {
-                opt.UseSqlServer(configuration.GetConnectionString("AuctionConnection"));
+                opt.UseSqlServer(configuration.GetConnectionString("RoomConnection"));
             });
 
             return services;

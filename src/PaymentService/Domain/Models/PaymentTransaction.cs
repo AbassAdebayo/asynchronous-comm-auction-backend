@@ -1,4 +1,4 @@
-﻿namespace PaymentService.Domain.AggregateModels;
+﻿namespace PaymentService.Domain.Models;
 
 /// <summary>
 /// Represents a payment transaction record.

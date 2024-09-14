@@ -1,14 +1,13 @@
 ﻿using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using PaymentService;
 using PaymentService.Application.Consumers;
 using PaymentService.Application.Contracts;
-using PaymentService.Infrastructure;
+using PaymentService.Infrastructure.Context;
 using PaymentService.Infrastructure.Repositories;
 using PaymentService.Infrastructure.Services;
 
-namespace PaymentService
+namespace PaymentService.Infrastructure.IOC.Extensions
 {
     public static class ServiceCollectionExtension
     {
@@ -20,7 +19,7 @@ namespace PaymentService
                 {
                     o.QueryDelay = TimeSpan.FromSeconds(10);
 
-                    o.UsePostgres();
+                    o.UseSqlServer();
                     o.UseBusOutbox();
                 });
 
@@ -37,8 +36,8 @@ namespace PaymentService
                     });
                     cfg.Host(configuration["RabbitMq:Host"], "/", host =>
                     {
-                        host.Username(configuration.GetValue("RabbitMq:Username", "guest"));
-                        host.Password(configuration.GetValue("RabbitMq:Password", "guest"));
+                        host.Username(configuration.GetValue("RabbitMq:Username", "admin"));
+                        host.Password(configuration.GetValue("RabbitMq:Password", "admin"));
                     });
 
                     cfg.ConfigureEndpoints(context);
@@ -47,17 +46,17 @@ namespace PaymentService
 
             return services;
         }
-        public static IServiceCollection AddCustomDbContext(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<PaymentDbContext>(opt =>
             {
-                opt.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+                opt.UseSqlServer(configuration.GetConnectionString("PaymentConnection"));
             });
 
             return services;
         }
 
-        public static IServiceCollection AddCustomServices(this IServiceCollection services)
+        public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<IPaymentRepository, PaymentRepository>();
             services.AddScoped<IPaymentGateway, PaystackServices>();

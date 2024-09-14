@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using InvoiceService.Domain.AggregateModels;
-using InvoiceService.Infrastructure;
+using InvoiceService.Domain.Models;
+using InvoiceService.Infrastructure.Context;
 using MassTransit;
 using SharedKernel;
 

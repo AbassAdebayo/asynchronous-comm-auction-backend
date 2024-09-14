@@ -1,9 +1,10 @@
 ﻿using BiddingService.Application.Consumers;
+using BiddingService.Infrastructure.IOC.Extensions;
 using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 
-namespace BiddingService
+namespace BiddingService.Infrastructure.IOC.Extensions
 {
     public static class ServiceCollectionExtension
     {
@@ -74,8 +75,8 @@ namespace BiddingService
                     });
                     cfg.Host(configuration["RabbitMq:Host"], "/", host =>
                     {
-                        host.Username(configuration.GetValue("RabbitMq:Username", "guest"));
-                        host.Password(configuration.GetValue("RabbitMq:Password", "guest"));
+                        host.Username(configuration.GetValue("RabbitMq:Username", "admin"));
+                        host.Password(configuration.GetValue("RabbitMq:Password", "admin"));
                     });
 
                     cfg.ConfigureEndpoints(context);

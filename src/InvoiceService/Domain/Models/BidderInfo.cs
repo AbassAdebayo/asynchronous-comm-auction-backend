@@ -1,4 +1,4 @@
-﻿namespace InvoiceService.Domain.AggregateModels
+﻿namespace InvoiceService.Domain.Models
 {
     public class BidderInfo
     {

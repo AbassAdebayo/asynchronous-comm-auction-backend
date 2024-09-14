@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PaymentService.Application.Contracts;
-using PaymentService.Domain.AggregateModels;
-using PaymentService.Infrastructure;
+using PaymentService.Domain.Models;
+using PaymentService.Infrastructure.Context;
 
 namespace PaymentService.Infrastructure.Repositories;
 

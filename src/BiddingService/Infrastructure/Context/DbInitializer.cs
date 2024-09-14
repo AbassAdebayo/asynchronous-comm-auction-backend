@@ -2,7 +2,7 @@
 using MongoDB.Driver;
 using MongoDB.Entities;
 
-namespace BiddingService.Infrastructure;
+namespace BiddingService.Infrastructure.Context;
 
 public static class DbInitializer
 {
