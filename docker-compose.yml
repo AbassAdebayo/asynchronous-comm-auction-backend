@@ -5,26 +5,16 @@
         - subnet: 10.5.0.0/16
 
 services:
-  postgres:
-    image: postgres
-    environment:
-      - POSTGRES_PASSWORD=pgpassword
-    ports:
-      - 5432:5432
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-    networks:
-      - custom
 
-  mongodb:
-    image: mongo
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=mongopw
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=admin@Passw0rd
     ports:
-      - 27017:27017
+      - 1433:1433
     volumes:
-      - mongodata:/data/db
+      - sqlserver-data:/var/opt/mssql
     networks:
       - custom
 
@@ -45,7 +35,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
       - RabbitMq__Host=rabbitmq
-      - ConnectionStrings__DefaultConnection=Server=postgres:5432;User Id=postgres;Password=pgpassword;Database=auctions
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;User Id=sa;Password=admin@Passw0rd;Database=room
       - IdentityServiceUrl=http://identity-svc
       - Kestrel__Endpoints__Grpc__Protocols=Http2
       - Kestrel__Endpoints__Grpc__Url=http://+:7777
@@ -55,7 +45,7 @@ services:
       - 7001:80
       - 7777:7777
     depends_on:
-      - postgres
+      - sqlserver
       - rabbitmq
     networks:
       - custom
@@ -68,10 +58,10 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
-      - ConnectionStrings__DefaultConnection=Server=postgres:5432;User Id=postgres;Password=pgpassword;Database=identity
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;User Id=sa;Password=admin@Passw0rd;Database=identity
       - VIRTUAL_HOST=id.asyncauction.com
     depends_on:
-      - postgres
+      - sqlserver
     networks:
       custom:
         ipv4_address: 10.5.0.200
@@ -97,13 +87,13 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
       - RabbitMq__Host=rabbitmq
-      - ConnectionStrings__BidDbConnection=mongodb://root:mongopw@mongodb
+      - ConnectionStrings__BidDbConnection=Server=sqlserver;User Id=sa;Password=admin@Passw0rd;Database=bid
       - IdentityServiceUrl=http://identity-svc
       - GrpcRoom=http://room-svc:7777
     ports:
       - 7002:80
     depends_on:
-      - mongodb
+      - sqlserver
       - rabbitmq
     networks:
       - custom
@@ -132,13 +122,13 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
-      - ConnectionStrings__DefaultConnection=Server=postgres:5432;User Id=postgres;Password=pgpassword;Database=invoices
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;User Id=sa;Password=admin@Passw0rd;Database=invoices
       - IdentityServiceUrl=http://identity-svc
       - RabbitMq__Host=rabbitmq
     ports:
       - 7004:80
     depends_on:
-      - postgres
+      - sqlserver
       - rabbitmq
     networks:
       - custom
@@ -151,13 +141,13 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
-      - ConnectionStrings__DefaultConnection=Server=postgres:5432;User Id=postgres;Password=pgpassword;Database=payments
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;User Id=sa;Password=admin@Passw0rd;Database=payments
       - IdentityServiceUrl=http://identity-svc
       - RabbitMq__Host=rabbitmq
     ports:
       - 7005:80
     depends_on:
-      - postgres
+      - sqlserver
       - rabbitmq
     networks:
       - custom
@@ -201,5 +191,4 @@ services:
 volumes:
   prometheus-data:
   grafana-data:
-  postgres-data:
-  mongodata:
+  sqlserver-data:

@@ -36,8 +36,8 @@ namespace PaymentService.Infrastructure.IOC.Extensions
                     });
                     cfg.Host(configuration["RabbitMq:Host"], "/", host =>
                     {
-                        host.Username(configuration.GetValue("RabbitMq:Username", "admin"));
-                        host.Password(configuration.GetValue("RabbitMq:Password", "admin"));
+                        host.Username(configuration.GetValue("RabbitMq:Username", "guest"));
+                        host.Password(configuration.GetValue("RabbitMq:Password", "guest"));
                     });
 
                     cfg.ConfigureEndpoints(context);
@@ -50,7 +50,7 @@ namespace PaymentService.Infrastructure.IOC.Extensions
         {
             services.AddDbContext<PaymentDbContext>(opt =>
             {
-                opt.UseSqlServer(configuration.GetConnectionString("PaymentConnection"));
+                opt.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
 
             return services;
